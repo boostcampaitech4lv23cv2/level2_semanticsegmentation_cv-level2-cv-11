@@ -1,0 +1,5 @@
+# folder
+.cache/
+.conda/
+.git/
+.config/
