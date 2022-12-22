@@ -1,5 +1,22 @@
-# folder
+# 자동생성 파일
 .cache/
 .conda/
 .git/
 .config/
+.ipython/
+.local/
+.nv/
+.vscode-server/
+.bash_history
+.bashrc
+.gitconfig
+.git-credentials
+.profile
+.python_history
+.wget-hsts
+__pycache__/
+
+# 폴더
+input/data
+input/code/submission
+input/code/saved
