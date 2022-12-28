@@ -6,6 +6,8 @@ import numpy as np
 
 from ..builder import PIPELINES
 
+from pycocotools.coco import COCO
+
 
 @PIPELINES.register_module()
 class LoadImageFromFile(object):
@@ -173,13 +175,13 @@ class CustomLoadAnnotations(object):
         self.imdecode_backend = imdecode_backend
 
     def __call__(self, results):
-        coco_ind = results['ann_info']['coco_image_id']
+        coco_ind = results['ann_info']['coco_img_id']
         image_info = self.coco.loadImgs(coco_ind)[0]
         ann_inds = self.coco.getAnnIds(coco_ind)
         anns = self.coco.loadAnns(ann_inds)
         anns = list(sorted(anns, key=lambda x: -x['area']))
 
-        gt_sematic_seg = np.zeros((image_info['heights'], image_info['width']))
+        gt_semantic_seg = np.zeros((image_info['height'], image_info['width']))
         for ann in anns:
             gt_semantic_seg[self.coco.annToMask(ann)==1] = ann['category_id']
         gt_semantic_seg = gt_semantic_seg.astype(np.int64)
@@ -195,4 +197,21 @@ class CustomLoadAnnotations(object):
         results['seg_fields'].append('gt_semantic_seg')
         return results
 
-        
+    def load_annotations(self):
+        img_infos = []
+
+        for img in self.coco.imgs.values():
+            img_info = dict(filename=img['file_name'])
+            img_infos.append(img_info)
+
+            img_info['ann'] = dict(coco_img_id=img['id'])
+        return img_infos
+
+    def get_ann_info(self, idx):
+        return self.img_infos[idx]['ann']
+
+    def pre_pipeline(self, results):
+        results['seg_fields'] = []
+        results['img_prefix'] = self.img_dir
+        if self.custom_classes:
+            results['label_map'] = self.label_map

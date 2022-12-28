@@ -6,7 +6,8 @@ img_norm_cfg = dict(
 crop_size = (512, 512)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
-    dict(type='CustomLoadAnnotations', reduce_zero_label=True),
+    dict(type='CustomLoadAnnotations', reduce_zero_label=True,
+         coco_json_path='/opt/ml/input/data/train.json'),
     dict(type='Resize', img_scale=(512, 512), ratio_range=(0.5, 2.0)),
     dict(type='RandomCrop', crop_size=crop_size, cat_max_ratio=0.75),
     dict(type='RandomFlip', prob=0.5),
