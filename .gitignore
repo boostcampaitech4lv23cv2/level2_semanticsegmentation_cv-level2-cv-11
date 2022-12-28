@@ -14,9 +14,16 @@
 .profile
 .python_history
 .wget-hsts
+.netrc
+.pipwin
 __pycache__/
 
 # 폴더
 input/data
 input/code/submission
 input/code/saved
+mmsegmentation/artifacts
+mmsegmentation/wandb
+mmsegmentation/work_dirs
+mmsegmentation/mmsegmentation.egg-info
+notebooks
