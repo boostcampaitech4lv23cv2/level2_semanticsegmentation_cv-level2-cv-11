@@ -31,7 +31,7 @@ def parse_args():
         '--resume-from', help='the checkpoint file to resume from')
     parser.add_argument(
         '--no-validate',
-        action='store_true',
+        default = False,
         help='whether not to evaluate the checkpoint during training')
     group_gpus = parser.add_mutually_exclusive_group()
     group_gpus.add_argument(
@@ -51,14 +51,14 @@ def parse_args():
         default=0,
         help='id of gpu to use '
         '(only applicable to non-distributed training)')
-    parser.add_argument('--seed', type=int, default=None, help='random seed')
+    parser.add_argument('--seed', type=int, default=42, help='random seed')
     parser.add_argument(
         '--diff_seed',
         action='store_true',
         help='Whether or not set different seeds for different ranks')
     parser.add_argument(
         '--deterministic',
-        action='store_true',
+        default = True,
         help='whether to set deterministic options for CUDNN backend.')
     parser.add_argument(
         '--options',
@@ -91,6 +91,23 @@ def parse_args():
         '--auto-resume',
         action='store_true',
         help='resume from the latest checkpoint automatically.')
+    
+    # wandb name/tag 동적할당
+    parser.add_argument(
+        '--name',
+        default= None,
+        type = str,
+        help = "프로젝트 이름 할당"
+    )
+    parser.add_argument(
+        '--tags',
+        default= None,
+        nargs='+',
+        type=str,
+        help = "프로젝트 태그 할당"
+    )
+    
+    
     args = parser.parse_args()
     if 'LOCAL_RANK' not in os.environ:
         os.environ['LOCAL_RANK'] = str(args.local_rank)
@@ -112,12 +129,32 @@ def main():
     args = parse_args()
 
     cfg = Config.fromfile(args.config)
+    
+    # wandb 연결
+    import wandb
+    if args.name is not None:
+        name = args.name
+    if args.tags is not None:
+        tags = args.tags
+    
+    wandb.init(entity = 'miho', project = 'segmentation', sync_tensorboard=True, name = name, tags = tags)
+    
+    for hook in cfg.log_config.hooks:
+        if hook.type == 'MMDetWandbHook':
+            # wandb name/tag 동적할당
+            if args.name is not None:
+                hook.init_kwargs.name = args.name
+            if args.tags is not None:
+                hook.init_kwargs.tags = args.tags
+
+            # log_checkpoint 검사
+            if hasattr(hook, 'log_checkpoint'):
+                assert not hook.log_checkpoint
+    
+    
+    
     if args.cfg_options is not None:
         cfg.merge_from_dict(args.cfg_options)
-
-    # set cudnn_benchmark
-    if cfg.get('cudnn_benchmark', False):
-        torch.backends.cudnn.benchmark = True
 
     # work_dir is determined in this priority: CLI > segment in file > filename
     if args.work_dir is not None:
@@ -187,7 +224,7 @@ def main():
     # set random seeds
     cfg.device = get_device()
     seed = init_random_seed(args.seed, device=cfg.device)
-    seed = seed + dist.get_rank() if args.diff_seed else seed
+    #seed = seed + dist.get_rank() if args.diff_seed else seed
     logger.info(f'Set random seed to {seed}, '
                 f'deterministic: {args.deterministic}')
     set_random_seed(seed, deterministic=args.deterministic)
