@@ -16,6 +16,10 @@
 .wget-hsts
 __pycache__/
 
+.ipynb_checkpoints
+.jupyter/
+work_dirs/
+
 # 폴더
 input/data
 input/code/submission
