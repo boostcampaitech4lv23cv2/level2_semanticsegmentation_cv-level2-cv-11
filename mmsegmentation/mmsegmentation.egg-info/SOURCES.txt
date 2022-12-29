@@ -83,6 +83,11 @@ mmseg/.mim/configs/_base_/schedules/schedule_20k.py
 mmseg/.mim/configs/_base_/schedules/schedule_320k.py
 mmseg/.mim/configs/_base_/schedules/schedule_40k.py
 mmseg/.mim/configs/_base_/schedules/schedule_80k.py
+mmseg/.mim/configs/_teajun_/upernet_swin_tiny_patch4_window7_512x512_160k_ade20k_pretrain_224x224_1K.py
+mmseg/.mim/configs/_teajun_/_base_/default_runtime.py
+mmseg/.mim/configs/_teajun_/_base_/datasets/trashcustom.py
+mmseg/.mim/configs/_teajun_/_base_/models/upernet_swin.py
+mmseg/.mim/configs/_teajun_/_base_/schedules/schedule_160k.py
 mmseg/.mim/configs/ann/ann.yml
 mmseg/.mim/configs/ann/ann_r101-d8_512x1024_40k_cityscapes.py
 mmseg/.mim/configs/ann/ann_r101-d8_512x1024_80k_cityscapes.py
@@ -854,6 +859,7 @@ mmseg/datasets/night_driving.py
 mmseg/datasets/pascal_context.py
 mmseg/datasets/potsdam.py
 mmseg/datasets/stare.py
+mmseg/datasets/trash.py
 mmseg/datasets/voc.py
 mmseg/datasets/pipelines/__init__.py
 mmseg/datasets/pipelines/compose.py
