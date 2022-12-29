@@ -14,14 +14,14 @@ import json
 
 ################여기########################
 # config파일 경로복사해주세요
-cfg = Config.fromfile('/opt/ml/mmsegmentation/configs/_teajun_/upernet_swin_tiny_patch4_window7_512x512_160k_ade20k_pretrain_224x224_1K.py')
+cfg = Config.fromfile('/opt/ml/mmsegmentation/configs/_teajun_/mobilenet_v3/lraspp_m-v3-d8_512x1024_320k_cityscapes.py')
 ################여기########################
 # print(cfg)
 root = '/opt/ml/data'
 epoch = 'latest'
 
 # work_dir 설정해주세요
-cfg.work_dir = '/opt/ml/mmsegmentation/work_dirs/upernet_swin_tiny_patch4_window7_512x512_160k_ade20k_pretrain_224x224_1K'
+cfg.work_dir = '/opt/ml/mmsegmentation/work_dirs/lraspp_m-v3-d8_512x1024_320k'
 checkpoint_path = os.path.join(cfg.work_dir, f'{epoch}.pth')
 
 # print('-'*10)
@@ -46,9 +46,11 @@ model = MMDataParallel(model.cuda(), device_ids=[0])
 
 output = single_gpu_test(model, data_loader)
 
+# print()
 # print('-'*10)
 # print(len(output[0]))
 # print(len(output))
+# print(type(output))
 # print('-'*10)
 
 submission = pd.read_csv('/opt/ml/input/code/submission/sample_submission.csv', index_col=None)
@@ -56,7 +58,7 @@ json_dir = os.path.join("/opt/ml/input/data/test.json")
 with open(json_dir, "r", encoding="utf8") as f:
     test_json = json.load(f)
 
-output = torch.Tensor(output)
+output = torch.tensor(output)
 # print(output.shape)
 for image_id, predict in enumerate(output):
     image_id = test_json["images"][image_id]
