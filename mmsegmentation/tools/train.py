@@ -128,16 +128,7 @@ def parse_args():
 def main():
     args = parse_args()
 
-    cfg = Config.fromfile(args.config)
-    
-    # wandb 연결
-    import wandb
-    if args.name is not None:
-        name = args.name
-    if args.tags is not None:
-        tags = args.tags
-    
-    wandb.init(entity = 'miho', project = 'segmentation', sync_tensorboard=True, name = name, tags = tags)
+    cfg = Config.fromfile(args.config)    
     
     for hook in cfg.log_config.hooks:
         if hook.type == 'MMDetWandbHook':
@@ -151,7 +142,7 @@ def main():
             if hasattr(hook, 'log_checkpoint'):
                 assert not hook.log_checkpoint
     
-    
+    wandb.init(entity = hook.init_kwargs.entity, project = hook.init_kwargs.project, sync_tensorboard=True, name = args.name, tags = args.tags)
     
     if args.cfg_options is not None:
         cfg.merge_from_dict(args.cfg_options)
