@@ -13,15 +13,15 @@ model = dict(
         use_abs_pos_embed=False,
         drop_path_rate=0.3,
         patch_norm=True),
-    decode_head=dict(in_channels=[96, 192, 384, 768], num_classes=150),
-    auxiliary_head=dict(in_channels=384, num_classes=150))
+    decode_head=dict(in_channels=[96, 192, 384, 768], num_classes=11),
+    auxiliary_head=dict(in_channels=384, num_classes=11))
 
 # AdamW optimizer, no weight decay for position embedding & layer norm
 # in backbone
 optimizer = dict(
     _delete_=True,
     type='AdamW',
-    lr=0.00006,
+    lr=0.0001,
     betas=(0.9, 0.999),
     weight_decay=0.01,
     paramwise_cfg=dict(
