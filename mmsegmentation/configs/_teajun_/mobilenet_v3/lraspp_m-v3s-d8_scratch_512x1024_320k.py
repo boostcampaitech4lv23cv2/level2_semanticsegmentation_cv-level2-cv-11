@@ -1,4 +1,4 @@
-_base_ = './lraspp_m-v3-d8_scratch_512x1024_320k_cityscapes.py'
+_base_ = './lraspp_m-v3-d8_scratch_512x1024_320k.py'
 norm_cfg = dict(type='SyncBN', eps=0.001, requires_grad=True)
 model = dict(
     type='EncoderDecoder',

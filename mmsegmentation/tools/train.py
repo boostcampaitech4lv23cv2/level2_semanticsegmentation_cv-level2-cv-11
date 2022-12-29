@@ -127,11 +127,12 @@ def parse_args():
 
 def main():
     args = parse_args()
-
-    cfg = Config.fromfile(args.config)    
     
+    cfg = Config.fromfile(args.config)
+    
+    # WandB Hook 체크
     for hook in cfg.log_config.hooks:
-        if hook.type == 'MMDetWandbHook':
+        if hook.type == 'MMSegWandbHook':
             # wandb name/tag 동적할당
             if args.name is not None:
                 hook.init_kwargs.name = args.name
@@ -141,7 +142,7 @@ def main():
             # log_checkpoint 검사
             if hasattr(hook, 'log_checkpoint'):
                 assert not hook.log_checkpoint
-    
+    import wandb
     wandb.init(entity = hook.init_kwargs.entity, project = hook.init_kwargs.project, sync_tensorboard=True, name = args.name, tags = args.tags)
     
     if args.cfg_options is not None:
