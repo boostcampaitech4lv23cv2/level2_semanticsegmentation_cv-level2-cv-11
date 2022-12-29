@@ -140,7 +140,7 @@ def main():
     wandb.init(entity = 'miho', project = 'segmentation', sync_tensorboard=True, name = name, tags = tags)
     
     for hook in cfg.log_config.hooks:
-        if hook.type == 'MMDetWandbHook':
+        if hook.type == 'MMSegWandbHook':
             # wandb name/tag 동적할당
             if args.name is not None:
                 hook.init_kwargs.name = args.name
