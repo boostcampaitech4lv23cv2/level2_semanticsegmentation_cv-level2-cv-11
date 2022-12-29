@@ -130,15 +130,7 @@ def main():
 
     cfg = Config.fromfile(args.config)
     
-    # wandb 연결
-    import wandb
-    if args.name is not None:
-        name = args.name
-    if args.tags is not None:
-        tags = args.tags
-    
-    wandb.init(entity = 'miho', project = 'segmentation', sync_tensorboard=True, name = name, tags = tags)
-    
+    # WandB Hook 체크
     for hook in cfg.log_config.hooks:
         if hook.type == 'MMSegWandbHook':
             # wandb name/tag 동적할당
