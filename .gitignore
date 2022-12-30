@@ -25,3 +25,6 @@ input/code/saved
 mmsegmentation/artifacts
 mmsegmentation/wandb
 mmsegmentation/work_dirs
+artifacts/
+wandb/
+work_dirs/
