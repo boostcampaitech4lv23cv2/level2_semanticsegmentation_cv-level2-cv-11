@@ -1,6 +1,6 @@
 _base_ = [
-    './_base_/models/upernet_convnext.py', './_base_/datasets/trashcustom.py',
-    './_base_/default_runtime.py', './_base_/schedules/schedule_160k.py'
+    '../_base_/models/upernet_convnext.py', '../_base_/datasets/trashcustom.py',
+    '../_base_/default_runtime.py', '../_base_/schedules/schedule_160k.py'
 ]
 crop_size = (512, 512)
 checkpoint_file = 'https://download.openmmlab.com/mmclassification/v0/convnext/downstream/convnext-large_3rdparty_in21k_20220301-e6e0ea0a.pth'  # noqa
