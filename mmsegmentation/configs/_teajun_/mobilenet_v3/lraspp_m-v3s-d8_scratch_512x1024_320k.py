@@ -14,7 +14,7 @@ model = dict(
         channels=128,
         input_transform='multiple_select',
         dropout_ratio=0.1,
-        num_classes=19,
+        num_classes=11,
         norm_cfg=norm_cfg,
         act_cfg=dict(type='ReLU'),
         align_corners=False,
