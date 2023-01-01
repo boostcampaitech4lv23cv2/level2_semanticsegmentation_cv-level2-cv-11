@@ -12,8 +12,6 @@ from ..builder import PIPELINES
 import albumentations as A
 from albumentations import Compose
 
-## copy-paste
-from .copy_paste import CopyPaste
 
 
 @PIPELINES.register_module()
