@@ -11,6 +11,7 @@ import torchvision
 import pandas as pd
 import numpy as np
 import json
+from PIL import Image
 
 ################여기########################
 # config파일 경로복사해주세요
@@ -67,7 +68,10 @@ for image_id, predict in enumerate(output):
     # resize
     # print(predict.shape)
     predict = predict.reshape(1, 512, 512)
-    mask = torchvision.transforms.Resize(256)(predict)
+    # torchvision.transforms.Resize(2, interpolation = Image.NEAREST)
+    mask = torchvision.transforms.Resize(256, interpolation = Image.NEAREST)(predict)
+
+
     # print(mask.shape)
     temp_mask.append(np.array(mask))
     oms = np.array(temp_mask)
