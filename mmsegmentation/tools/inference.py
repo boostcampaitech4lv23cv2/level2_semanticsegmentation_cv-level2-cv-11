@@ -15,14 +15,14 @@ from PIL import Image
 
 ################여기########################
 # config파일 경로복사해주세요
-cfg = Config.fromfile('/opt/ml/mmsegmentation/configs/_teajun_/mobilenet_v3/lraspp_m-v3-d8_512x1024_320k_cityscapes.py')
+cfg = Config.fromfile('/opt/ml/mmsegmentation/configs/_teajun_/convnext/upernet_convnext_large_fp16_640x640_160k_ade20k_20000iter_aug.py')
 ################여기########################
 # print(cfg)
 root = '/opt/ml/data'
 epoch = 'latest'
 
 # work_dir 설정해주세요
-cfg.work_dir = '/opt/ml/mmsegmentation/work_dirs/lraspp_m-v3-d8_512x1024_320k'
+cfg.work_dir = '/opt/ml/work_dirs/upernet_convnext_large_fp16_640x640_160k_ade20k_20000iter_aug3'
 checkpoint_path = os.path.join(cfg.work_dir, f'{epoch}.pth')
 
 # print('-'*10)

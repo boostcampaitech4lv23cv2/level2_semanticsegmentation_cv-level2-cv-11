@@ -1,17 +1,17 @@
 _base_ = [
-    '../_base_/models/segformer_mit-b0.py', '../_base_/datasets/ade20k.py',
+    '../_base_/models/segformer_mit-b0.py', '../_base_/datasets/trashcustom.py',
     '../_base_/default_runtime.py', '../_base_/schedules/schedule_160k.py'
 ]
 
 checkpoint = 'https://download.openmmlab.com/mmsegmentation/v0.5/pretrain/segformer/mit_b0_20220624-7e0fe6dd.pth'  # noqa
 
-model = dict(pretrained=checkpoint, decode_head=dict(num_classes=150))
+model = dict(pretrained=checkpoint, decode_head=dict(num_classes=11))
 
 # optimizer
 optimizer = dict(
     _delete_=True,
     type='AdamW',
-    lr=0.00006,
+    lr=1e-4,
     betas=(0.9, 0.999),
     weight_decay=0.01,
     paramwise_cfg=dict(
