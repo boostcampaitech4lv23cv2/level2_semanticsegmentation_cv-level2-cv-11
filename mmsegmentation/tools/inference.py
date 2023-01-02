@@ -11,6 +11,7 @@ import torchvision
 import pandas as pd
 import numpy as np
 import json
+from PIL import Image
 
 ################여기########################
 # config파일 경로복사해주세요
