@@ -95,7 +95,7 @@ def validation(epoch, model, data_loader, criterion, device, global_step, catego
             hist = add_hist(hist, masks, outputs, n_class=n_class)
         
         acc, acc_cls, mIoU, fwavacc, IoU = label_accuracy_score(hist)
-        IoU_by_class = [{classes : round(IoU,4)} for IoU, classes in zip(IoU , category_names)]
+        IoU_by_class = {f'val/IoU.{classes}': round(IoU,4) for IoU, classes in zip(IoU , category_names)}
         
         avrg_loss = total_loss / cnt
         print(f'Validation #{epoch}  Average Loss: {round(avrg_loss.item(), 4)}, Accuracy : {round(acc, 4)}, \
@@ -103,5 +103,6 @@ def validation(epoch, model, data_loader, criterion, device, global_step, catego
         print(f'IoU by class : {IoU_by_class}')
         wandb.log({"val/mIoU": round(mIoU, 4),
                    "val/loss": round(avrg_loss.item(), 4)}, step=global_step)
+        wandb.log(IoU_by_class, step=global_step)
         
     return avrg_loss
