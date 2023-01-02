@@ -28,3 +28,4 @@ mmsegmentation/work_dirs
 artifacts/
 wandb/
 work_dirs/
+smp/saved
