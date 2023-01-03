@@ -28,4 +28,6 @@ mmsegmentation/work_dirs
 artifacts/
 wandb/
 work_dirs/
+soup_recipe/
+notebooks/
 smp/saved
