@@ -1,5 +1,5 @@
 _base_ = [
-'../_base_/datasets/trashcustom.py',
+'../_base_/datasets/trashcustom_aug.py',
 '../_base_/default_runtime.py', '../_base_/schedules/schedule_80k.py'
 ]
 
