@@ -42,12 +42,11 @@
 >### WandB
 > - 실험기록을 공유하여 hyperparameter 튜닝 및 모델 평가
 
-
 ## Directory Structure
 ```CMDs
 ```
 
-## Project Iplementation Procedures and Methods
+## Project Implementation Procedures and Methods
 수정필요
 [![image](https://user-images.githubusercontent.com/62556539/200262300-3765b3e4-0050-4760-b008-f218d079a770.png)]()
 
