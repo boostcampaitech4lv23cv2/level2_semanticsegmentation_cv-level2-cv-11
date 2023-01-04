@@ -139,7 +139,7 @@ input/code/baseline_train_smp.ipynb 실행
 ```
 
 ## Project Implementation Procedures and Methods
-[![image](https://user-images.githubusercontent.com/62556539/200262300-3765b3e4-0050-4760-b008-f218d079a770.png)]()
+[![image](https://user-images.githubusercontent.com/62556539/200262300-3765b3e4-0050-4760-b008-f218d079a770.png)](https://excessive-help-ce8.notion.site/8c0240de8c394e5184de03dbdb9aac79)
 
 ## Team Roles
 구미호: 심건희, 류건, 윤태준, 이강희, 이예라
