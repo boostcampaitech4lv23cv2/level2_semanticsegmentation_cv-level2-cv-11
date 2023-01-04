@@ -32,6 +32,60 @@
 > - mmsegmentation
 > - pytorch ..
 
+## 개발 환경 설정
+### git
+```CMDs
+git clone add origin https://github.com/boostcampaitech4lv23cv2/level2_semanticsegmentation_cv-level2-cv-11.git
+```
+
+### mmsegmentation
+```CMDs
+conda create -n openmmlab --clone base 
+conda activate mmopenlab 
+pip install -r mmsegmentation/requirements.txt
+pip install -U openmim
+mim install mmcv-full
+mim install mmcv-full==1.7.0
+```
+
+버전 확인
+```CMD
+python -c 'import torch;print(torch.__version__);print(torch.version.cuda)'
+pip install mmcv-full==1.7.0 -f https://download.openmmlab.com/mmcv/dist/cu110/torch1.7/index.html
+```
+
+잘 설치되었는지 확인하기
+```CMD
+cd mmsegmentation
+pip install -e .
+apt-get update && apt-get install libgl1
+mim download mmsegmentation --config pspnet_r50-d8_512x1024_40k_cityscapes --dest .
+python demo/image_demo.py demo/demo.png configs/pspnet/pspnet_r50-d8_512x1024_40k_cityscapes.py pspnet_r50-d8_512x1024_40k_cityscapes_20200605_003338-2966598c.pth --device cuda:0 --out-file result.jpg
+```
+
+### mmsegmentation train
+```CMD
+cd mmsegmentation
+python tools/train.py <config_file>
+```
+
+### mmsegmentation inference
+config file, work_dir, epoch 변경 후
+```CMD
+cd mmsegmentation
+python tools/inference.py
+```
+
+### smp. train
+```CMD
+cd smp
+python train.py
+```
+
+### smp. inference
+input/code/baseline_train_smp.ipynb 실행
+
+
 ## Communication
 >### Github
 > - 코드 공유를 통해 협업
@@ -44,10 +98,47 @@
 
 ## Directory Structure
 ```CMDs
+.
+|-- README.md
+|-- input
+|   |-- code
+|   `-- data
+|-- mmsegmentation
+|   |-- configs
+|   |   |-- _base_
+|   |   |-- _teajun_
+|   |   |   |-- _base_
+|   |   |   |-- beit
+|   |   |   |-- convnext
+|   |   |   |-- knet
+|   |   |   |-- mobilenet_v3
+|   |   |   |-- segformer
+|   |   |   `-- swin
+|   |-- demo
+|   |-- docker
+|   |-- docs
+|   |-- mmseg
+|   |-- resources
+|   |-- setup.py
+|   |-- tests
+|   `-- tools
+|-- notebooks
+|   |-- copy_paste
+|   |-- ensemble.ipynb
+|   |-- ensemble_refactor.ipynb
+|   |-- model_soup.ipynb
+|   `-- stratified_kfold.ipynb
+`-- smp
+    |-- __pycache__
+    |-- data_loader.py
+    |-- saved
+    |-- train.py
+    |-- trainer.py
+    |-- utils.py
+    `-- wandb
 ```
 
 ## Project Implementation Procedures and Methods
-수정필요
 [![image](https://user-images.githubusercontent.com/62556539/200262300-3765b3e4-0050-4760-b008-f218d079a770.png)]()
 
 ## Team Roles
@@ -63,6 +154,18 @@
 ![Untitled (7)](https://user-images.githubusercontent.com/62556539/210492522-1cc7b7aa-fa1e-45f3-b5f1-767063abcce4.png)
 
 ## Results
+<img src="https://user-images.githubusercontent.com/62556539/210496223-bdf8e426-85c3-4abc-ada4-508b3c691e67.png"  width="75%" height="75%"/>
+
+**smp. library**
+
+- ensemble (deeplabV3++, pan, fpn)  ⇒ 0.5861
+
+ **mmseg. library**
+
+- model soup (ConvNext, KNet, BEiT)
+- ensemble (ConvNext,KNet,BEiT) ⇒ 0.7454
+
+ **ensemble(smp. + mmseg.)** ⇒ 0.7431
 
 
 ## 자체 평가 의견
