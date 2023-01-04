@@ -8,7 +8,7 @@
 > - 평가방법 : Test set의 mIoU
 
 
-## Mebers
+## Members
 
 | [류건](https://github.com/jerry-ryu) | [심건희](https://github.com/jane79) | [윤태준](https://github.com/ta1231) | [이강희](https://github.com/ganghe74) | [이예라](https://github.com/Yera10) |
 | :-: | :-: | :-: | :-: | :-: | 
