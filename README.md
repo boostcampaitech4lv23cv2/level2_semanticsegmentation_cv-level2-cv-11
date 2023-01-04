@@ -31,6 +31,7 @@
 > - NVIDIA Tesla V100-PCIE-32GB
 > - mmsegmentation
 > - pytorch ..
+
 ## Communication
 >### Github
 > - 코드 공유를 통해 협업
@@ -45,28 +46,41 @@
 ## Directory Structure
 ```CMDs
 ```
+
+## Project Iplementation Procedures and Methods
+수정필요
+[![image](https://user-images.githubusercontent.com/62556539/200262300-3765b3e4-0050-4760-b008-f218d079a770.png)]()
+
 ## Team Roles
-> - 류건 :
-> - 심건희 : 
-> - 윤태준 : 
-> - 이강희 : 
-> - 이예라 : 
+구미호: 심건희, 류건, 윤태준, 이강희, 이예라
+
+- 심건희: 모델 (smp. / efficientnet, scheduler) 실험, 튜닝
+- 류건: 모델(mmseg. / segformer, ConvNext) 실험, 튜닝, model soup, copy & paste 구현, wandb 연결
+- 윤태준: 모델실험(mmseg. / KNet, ConvNext), 앙상블, 추론코드 구현
+- 이강희: mmsegmentation 데이터셋 구현, 모델 실험(mmseg. / BEIT)
+- 이예라: 모델(smp. / fpn, encoder, augmentation) 실험, wandb 관련 구현, smp-template 관련 구현
 
 ## Timeline
-![timeline_image]() 
+![Untitled (7)](https://user-images.githubusercontent.com/62556539/210492522-1cc7b7aa-fa1e-45f3-b5f1-767063abcce4.png)
 
 ## Results
 
 
 ## 자체 평가 의견
-> **잘한 점**
-> - 
->
-> **아쉬운 점:**
-> - 
-> 
-> **개선할 점:**
-> - 
+**잘한 점**
+- Model Soup를 게시판에 올려 다른 사람들이 사용해볼 수 있도록 기여했다.
+- Pull Request를 통해 한번씩 검사를 받고 merge하여 오류가 줄었다.
+- 힘든 일정에도 서로를 격려하고 팀 분위기를 긍정적으로 유지하였다.
+- 다양한 SOTA segmentation에 대해 공부하고 실험했다.
+- 함께 디버깅하여 빠른 문제 대응을 할 수 있었다.
+- Wandb를 사용하여 실시간 모니터링 및 팀원들과의 결과 공유가 용이했다.
+- 일일 PM을 통해서 코드 리뷰와 공유를 더 용이하게 하였다.
+
+**아쉬운 점:**
+- PM의 역할에 대해 명확히 정해두지 못했다
+
+**개선할 점:**
+- PM 역할 명확하게 해두기
 
 
 ---
