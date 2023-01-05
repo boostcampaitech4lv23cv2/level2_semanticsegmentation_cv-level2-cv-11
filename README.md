@@ -166,6 +166,16 @@ input/code/baseline_train_smp.ipynb 실행
 - ensemble (ConvNext,KNet,BEiT) ⇒ 0.7454
 
  **ensemble(smp. + mmseg.)** ⇒ 0.7431
+ 
+public 결과
+
+![Untitled (11)](https://user-images.githubusercontent.com/62556539/210759290-49c90757-67a8-4385-a8eb-af3802b1587b.png)
+
+
+private 결과
+
+![Untitled (12)](https://user-images.githubusercontent.com/62556539/210759284-8f5f9de2-e7fc-484b-89c7-c60ce71179cf.png)
+
 
 
 ## 자체 평가 의견
